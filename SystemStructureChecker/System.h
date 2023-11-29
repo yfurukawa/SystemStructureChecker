@@ -18,6 +18,7 @@ private:
     std::string systemName_{};
     std::map<std::string, std::shared_ptr<Block>> subsystems_{};
     void createSubsystemBlocks();
+    void createPort();
     
 };
 
