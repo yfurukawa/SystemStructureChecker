@@ -1,12 +1,15 @@
+#include <iostream>
 #include "Block.h"
 #include "Interface.h"
 
 Block::Block( std::string name ) : blockName_( std::move(name) ), parent_( nullptr )
 {
+    std::cout << blockName_ << " was created." << std::endl;
 }
 
 Block::Block( std::string name, std::shared_ptr<Block> parent ) : blockName_( std::move(name) ), parent_( parent )
 {
+    std::cout << blockName_ << " was created with " << parent_->name() << std::endl;
 }
 
 void Block::createPort( std::string portname )
