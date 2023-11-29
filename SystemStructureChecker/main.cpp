@@ -12,6 +12,7 @@
 
 int main(int argc, const char * argv[]) {
     auto system = std::make_unique<System>("System");
+    system->run();
     
     return EXIT_SUCCESS;
 }
