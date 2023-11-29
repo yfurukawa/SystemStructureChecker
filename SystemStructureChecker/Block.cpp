@@ -40,6 +40,7 @@ std::string Block::name()
 
 Block::Port::Port( std::string portName, Block* parent ) : portName_( std::move(portName) ), parent_( parent )
 {
+    std::cout << portName_ << " of " << parent_->name()<< " was created" << std::endl;
 }
 
 void Block::Port::allocateInterface( std::shared_ptr<Interface> interface )
