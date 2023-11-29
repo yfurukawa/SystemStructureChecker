@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		92060E9F2B1741C30045576C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92060E9E2B1741C30045576C /* main.cpp */; };
+		92060EAF2B1749FD0045576C /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 92060EA62B1749FC0045576C /* Makefile */; };
+		92060EB02B1749FD0045576C /* System.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92060EA72B1749FC0045576C /* System.cpp */; };
+		92060EB12B1749FD0045576C /* Link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92060EA82B1749FC0045576C /* Link.cpp */; };
+		92060EB22B1749FD0045576C /* Block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92060EAC2B1749FD0045576C /* Block.cpp */; };
+		92060EB32B1749FD0045576C /* Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92060EAD2B1749FD0045576C /* Interface.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +30,16 @@
 /* Begin PBXFileReference section */
 		92060E9B2B1741C30045576C /* SystemStructureChecker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SystemStructureChecker; sourceTree = BUILT_PRODUCTS_DIR; };
 		92060E9E2B1741C30045576C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		92060EA52B1749FC0045576C /* Link.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Link.h; sourceTree = "<group>"; };
+		92060EA62B1749FC0045576C /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		92060EA72B1749FC0045576C /* System.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = System.cpp; sourceTree = "<group>"; };
+		92060EA82B1749FC0045576C /* Link.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Link.cpp; sourceTree = "<group>"; };
+		92060EA92B1749FC0045576C /* System.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = System.h; sourceTree = "<group>"; };
+		92060EAA2B1749FC0045576C /* FlowObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowObject.h; sourceTree = "<group>"; };
+		92060EAB2B1749FC0045576C /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
+		92060EAC2B1749FD0045576C /* Block.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Block.cpp; sourceTree = "<group>"; };
+		92060EAD2B1749FD0045576C /* Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Interface.cpp; sourceTree = "<group>"; };
+		92060EAE2B1749FD0045576C /* Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interface.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +72,16 @@
 		92060E9D2B1741C30045576C /* SystemStructureChecker */ = {
 			isa = PBXGroup;
 			children = (
+				92060EAC2B1749FD0045576C /* Block.cpp */,
+				92060EAB2B1749FC0045576C /* Block.h */,
+				92060EAA2B1749FC0045576C /* FlowObject.h */,
+				92060EAD2B1749FD0045576C /* Interface.cpp */,
+				92060EAE2B1749FD0045576C /* Interface.h */,
+				92060EA82B1749FC0045576C /* Link.cpp */,
+				92060EA52B1749FC0045576C /* Link.h */,
+				92060EA62B1749FC0045576C /* Makefile */,
+				92060EA72B1749FC0045576C /* System.cpp */,
+				92060EA92B1749FC0045576C /* System.h */,
 				92060E9E2B1741C30045576C /* main.cpp */,
 			);
 			path = SystemStructureChecker;
@@ -119,7 +144,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92060EB02B1749FD0045576C /* System.cpp in Sources */,
+				92060EAF2B1749FD0045576C /* Makefile in Sources */,
 				92060E9F2B1741C30045576C /* main.cpp in Sources */,
+				92060EB32B1749FD0045576C /* Interface.cpp in Sources */,
+				92060EB12B1749FD0045576C /* Link.cpp in Sources */,
+				92060EB22B1749FD0045576C /* Block.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
