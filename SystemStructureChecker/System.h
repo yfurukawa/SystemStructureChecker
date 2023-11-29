@@ -1,6 +1,10 @@
 #pragma once
 
+#include <map>
+#include <memory>
 #include <string>
+
+class Block;
 
 class System final
 {
@@ -12,5 +16,8 @@ public:
     void run();
 private:
     std::string systemName_{};
+    std::map<std::string, std::shared_ptr<Block>> subsystems_{};
+    void createSubsystemBlocks();
+    
 };
 
