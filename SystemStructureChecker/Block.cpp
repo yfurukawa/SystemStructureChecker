@@ -46,6 +46,7 @@ Block::Port::Port( std::string portName, Block* parent ) : portName_( std::move(
 void Block::Port::allocateInterface( std::shared_ptr<Interface> interface )
 {
     interfaces_.insert( std::make_pair(interface->name(), interface) );
+    std::cout << "allocate " << interface->name() << " to " << portName_ << " of " << parent_->name() << std::endl;
 }
 
 void Block::Port::addLink( std::string targetInterface, std::shared_ptr<Link> link )
