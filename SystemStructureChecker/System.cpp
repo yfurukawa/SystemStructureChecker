@@ -64,4 +64,10 @@ void System::createLink()
     for( auto link : links ) {
         links_.insert( std::make_pair(link, std::make_shared<Link>(link)) );
     }
+    this->bindInterfaceAndLink();
+}
+
+void System::bindInterfaceAndLink()
+{
+    links_.at("link1")->bindInterface(interfaces_.at("Avionics,p2,Status"), interfaces_.at("Engine,p1,Status"));
 }

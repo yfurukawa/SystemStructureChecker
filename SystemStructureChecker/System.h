@@ -27,5 +27,6 @@ private:
     void createInterface();
     void allocateInterface();
     void createLink();
+    void bindInterfaceAndLink();
 };
 
