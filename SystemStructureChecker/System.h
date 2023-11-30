@@ -6,6 +6,7 @@
 
 class Block;
 class Interface;
+class Link;
 
 class System final
 {
@@ -19,10 +20,12 @@ private:
     std::string systemName_{};
     std::map<std::string, std::shared_ptr<Block>> subsystems_{};
     std::map<std::string, std::shared_ptr<Interface>> interfaces_{};
+    std::map<std::string, std::shared_ptr<Link>> links_{};
     
     void createSubsystemBlocks();
     void createPort();
     void createInterface();
     void allocateInterface();
+    void createLink();
 };
 

@@ -13,6 +13,7 @@ void System::run()
     this->createSubsystemBlocks();
     this->createPort();
     this->createInterface();
+    this->createLink();
 }
 
 void System::createSubsystemBlocks()
@@ -39,7 +40,7 @@ void System::createPort()
 void System::createInterface()
 {
     std::array<std::string, 4> interface = {"Avionics,p1,DigitalData","Avionics,p1,TacticalData", "Avionics,p2,Status", "Engine,p1,Status"};
-    for(auto interfaceName : interface ) {
+    for( auto interfaceName : interface ) {
         interfaces_.insert( std::make_pair(interfaceName, std::make_shared<Interface>(interfaceName)) );
     }
     this->allocateInterface();
@@ -51,8 +52,16 @@ void System::allocateInterface()
                                                                                     , std::make_tuple("Avionics","p1","Avionics,p1,TacticalData")
                                                                                     , std::make_tuple("Avionics","p2","Avionics,p2,Status")
                                                                                     , std::make_tuple("Engine","p1","Engine,p1,Status")};
-    for(auto port : targetPort ) {
+    for( auto port : targetPort ) {
         subsystems_.at(std::get<0>(port))->allocateInterface( std::get<1>(port), interfaces_.at(std::get<2>(port)) );
     }
 
+}
+
+void System::createLink()
+{
+    std::array<std::string, 1> links = {"link1"};
+    for( auto link : links ) {
+        links_.insert( std::make_pair(link, std::make_shared<Link>(link)) );
+    }
 }
