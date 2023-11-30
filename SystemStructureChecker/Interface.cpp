@@ -14,3 +14,8 @@ std::string Interface::name()
 {
     return interfaceName_;
 }
+
+void Interface::bindLink( std::shared_ptr<Link> link )
+{
+    link_ = link;
+}

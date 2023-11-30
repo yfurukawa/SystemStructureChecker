@@ -15,7 +15,9 @@ public:
     ~Interface() = default;
     void addLink( std::shared_ptr<Link> link );
     std::string name();
+    void bindLink( std::shared_ptr<Link> link );
 private:
     std::string interfaceName_{};
     std::map<std::string, std::shared_ptr<Link>> links_{};
+    std::shared_ptr<Link> link_{};
 };
