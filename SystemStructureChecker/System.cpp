@@ -30,7 +30,6 @@ void System::createPort()
     ports.insert(std::make_pair("Avionics", "p2"));
     ports.insert(std::make_pair("Engine", "p1"));
     ports.insert(std::make_pair("Engine", "p2"));
-    std::cout << ports.size() << std::endl;
     
     for(auto port = begin(ports); port != end(ports); ++port) {
         subsystems_.at(port->first)->createPort(port->second);
@@ -39,21 +38,21 @@ void System::createPort()
 
 void System::createInterface()
 {
-    std::array<std::string, 2> interface = {"Digital Data", "Status"};
-    for(auto i : interface ) {
-        interfaces_.insert( std::make_pair(i, std::make_shared<Interface>(i)) );
+    std::array<std::string, 4> interface = {"Avionics,p1,DigitalData","Avionics,p1,TacticalData", "Avionics,p2,Status", "Engine,p1,Status"};
+    for(auto interfaceName : interface ) {
+        interfaces_.insert( std::make_pair(interfaceName, std::make_shared<Interface>(interfaceName)) );
     }
     this->allocateInterface();
 }
 
 void System::allocateInterface()
 {
-    std::multimap<std::string, std::pair<std::string, std::string>> interface;
-    interface.insert( std::make_pair("Avionics", std::make_pair("p1", "Digital Data")) );
-    interface.insert( std::make_pair("Avionics", std::make_pair("p2", "Status")) );
-    interface.insert( std::make_pair("Engine", std::make_pair("p1", "Status")) );
-    
-    for( auto p = begin(interface); p != end(interface); ++p ) {
-        subsystems_.at(p->first)->allocateInterface( (p->second).first, interfaces_.at((p->second).second) );
+    std::array<std::tuple<std::string, std::string, std::string>, 4> targetPort = {std::make_tuple("Avionics","p1","Avionics,p1,DigitalData")
+                                                                                    , std::make_tuple("Avionics","p1","Avionics,p1,TacticalData")
+                                                                                    , std::make_tuple("Avionics","p2","Avionics,p2,Status")
+                                                                                    , std::make_tuple("Engine","p1","Engine,p1,Status")};
+    for(auto port : targetPort ) {
+        subsystems_.at(std::get<0>(port))->allocateInterface( std::get<1>(port), interfaces_.at(std::get<2>(port)) );
     }
+
 }
