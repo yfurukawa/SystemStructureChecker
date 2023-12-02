@@ -70,4 +70,6 @@ void System::createLink()
 void System::bindInterfaceAndLink()
 {
     links_.at("link1")->bindInterface(interfaces_.at("Avionics,p2,Status"), interfaces_.at("Engine,p1,Status"));
+    interfaces_.at("Avionics,p2,Status")->bindLink(links_.at("link1"));
+    interfaces_.at("Engine,p1,Status")->bindLink(links_.at("link1"));
 }
