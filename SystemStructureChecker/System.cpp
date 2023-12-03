@@ -39,9 +39,11 @@ void System::createPort()
 
 void System::createInterface()
 {
-    std::array<std::string, 4> interface = {"Avionics,p1,DigitalData","Avionics,p1,TacticalData", "Avionics,p2,Status", "Engine,p1,Status"};
-    for( auto interfaceName : interface ) {
-        interfaces_.insert( std::make_pair(interfaceName, std::make_shared<Interface>(interfaceName)) );
+    std::array<std::string, 4> interfaces = {"Avionics,p1,DigitalData","Avionics,p1,TacticalData", "Avionics,p2,Status", "Engine,p1,Status"};
+    std::string name{};
+    for( auto id : interfaces ) {
+        name =  id.substr( id.rfind(',')+1 );
+        interfaces_.insert( std::make_pair(id, std::make_shared<Interface>(id, name)) );
     }
     this->allocateInterface();
 }

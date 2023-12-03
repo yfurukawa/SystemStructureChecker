@@ -1,7 +1,10 @@
+#include "FlowObject.h"
 #include "Interface.h"
 #include "Link.h"
 
-Interface::Interface( std::string interfaceName ) : interfaceName_( std::move(interfaceName) )
+Interface::Interface( std::string interfaceId, std::string interfaceName )
+    : interfaceId_( std::move( interfaceId ) )
+    , interfaceName_( std::move(interfaceName) )
 {
 }
 
@@ -18,4 +21,9 @@ std::string Interface::name()
 void Interface::bindLink( std::shared_ptr<Link> link )
 {
     link_ = link;
+}
+
+void Interface::sendData(FlowObject& data)
+{
+    
 }
