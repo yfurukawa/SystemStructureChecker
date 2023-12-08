@@ -4,12 +4,13 @@
 #include <memory>
 #include <string>
 
+class FlowObject;
 class Interface;
 class Link;
 
 class Block
 {
-private:
+public:
     class Port
     {
     private:
@@ -19,6 +20,9 @@ private:
         ~Port() = default;
         void allocateInterface( std::shared_ptr<Interface> interface );
         void addLink( std::string targetInterface, std::shared_ptr<Link> link );
+        void sendData( std::string targetInterface, FlowObject& data ) const;
+        void receiveData( FlowObject& data ) const;
+        void replyData( FlowObject& data ) const;
     private:
         std::string portName_{};
         Block* parent_;
@@ -35,6 +39,8 @@ public:
     void allocateInterface( std::string targetPort, std::shared_ptr<Interface> interface );
     void addLink( std::string targetPort, std::string targetInterface, std::shared_ptr<Link> link );
     void addPart( std::shared_ptr<Block> part);
+    void sendData();
+    void receiveData( FlowObject& data);
     std::string name();
 private:
     std::string blockName_{};

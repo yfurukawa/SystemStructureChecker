@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Block.h"
+#include "FlowObject.h"
 #include "Interface.h"
 
 Block::Block( std::string name ) : blockName_( std::move(name) ), parent_( nullptr )
@@ -14,7 +15,9 @@ Block::Block( std::string name, std::shared_ptr<Block> parent ) : blockName_( st
 
 void Block::createPort( std::string portname )
 {
-    ports_.insert( std::make_pair(portname, std::make_shared<Port>(portname, this)) );
+    auto port = std::make_shared<Port>(portname, this);
+    ports_.insert( std::make_pair(portname, port) );
+    
 }
 
 void Block::allocateInterface( std::string targetPort, std::shared_ptr<Interface> interface )
@@ -37,6 +40,16 @@ std::string Block::name()
     return blockName_;
 }
 
+void Block::sendData()
+{
+    FlowObject data("testData");
+    ports_.at("p2")->sendData("Status", data);
+}
+
+void Block::receiveData(FlowObject &data)
+{
+    std::cout << data.name() << " at " << name() << std::endl;
+}
 
 Block::Port::Port( std::string portName, Block* parent ) : portName_( std::move(portName) ), parent_( parent )
 {
@@ -46,10 +59,26 @@ Block::Port::Port( std::string portName, Block* parent ) : portName_( std::move(
 void Block::Port::allocateInterface( std::shared_ptr<Interface> interface )
 {
     interfaces_.insert( std::make_pair(interface->name(), interface) );
+    interface->bindPort(this);
     std::cout << "allocate " << interface->name() << " to " << portName_ << " of " << parent_->name() << std::endl;
 }
 
 void Block::Port::addLink( std::string targetInterface, std::shared_ptr<Link> link )
 {
     interfaces_.at(targetInterface)->addLink(link);
+}
+
+void Block::Port::sendData(std::string usingInterface, FlowObject& data) const
+{
+    interfaces_.at(usingInterface)->sendData(data);
+}
+
+void Block::Port::receiveData(FlowObject& data) const
+{
+    parent_->receiveData(data);
+}
+
+void Block::Port::replyData(FlowObject &data) const
+{
+    
 }

@@ -3,6 +3,7 @@
 #include "Interface.h"
 #include "Link.h"
 #include "System.h"
+#include "FlowObject.h"
 
 System::System( std::string name ) : systemName_( std::move(name) )
 {
@@ -14,6 +15,9 @@ void System::run()
     this->createPort();
     this->createInterface();
     this->createLink();
+    
+    struct FlowObject data("test");
+    subsystems_.at("Avionics")->sendData();
 }
 
 void System::createSubsystemBlocks()
@@ -72,6 +76,6 @@ void System::createLink()
 void System::bindInterfaceAndLink()
 {
     links_.at("link1")->bindInterface(interfaces_.at("Avionics,p2,Status"), interfaces_.at("Engine,p1,Status"));
-    interfaces_.at("Avionics,p2,Status")->bindLink(links_.at("link1"));
-    interfaces_.at("Engine,p1,Status")->bindLink(links_.at("link1"));
+    interfaces_.at("Avionics,p2,Status")->addLink(links_.at("link1"));
+    interfaces_.at("Engine,p1,Status")->addLink(links_.at("link1"));
 }

@@ -1,6 +1,8 @@
+
 #include "FlowObject.h"
 #include "Interface.h"
 #include "Link.h"
+#include "Block.h"
 
 Interface::Interface( std::string interfaceId, std::string interfaceName )
     : interfaceId_( std::move( interfaceId ) )
@@ -18,12 +20,24 @@ std::string Interface::name()
     return interfaceName_;
 }
 
-void Interface::bindLink( std::shared_ptr<Link> link )
+void Interface::sendData(FlowObject& data) const
 {
-    link_ = link;
+    for( auto link = begin(links_); link != end(links_); ++link ) {
+        link->second->sendData(data);
+    }
 }
 
-void Interface::sendData(FlowObject& data)
+void Interface::receiveData(FlowObject& data) const
 {
-    
+    ownerPort_->receiveData(data);
+}
+
+void Interface::bindPort(Block::Port *ownerPort)
+{
+    ownerPort_ = ownerPort;
+}
+
+void Interface::replyData(FlowObject &data) const
+{
+    ownerPort_->replyData(data);
 }
